@@ -44,7 +44,7 @@ public class StoresDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /*public long insertStore(String type, String style, String location, String music, String averageAge) {
+    public long insertStore(String name,String type, String style, String location, String music, String averageAge) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
@@ -59,11 +59,12 @@ public class StoresDbHelper extends SQLiteOpenHelper {
     public Cursor searchStores(String[] characteristics) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " +
+                COLUMN_NAME + " = ? AND " +
                 COLUMN_TYPE + " = ? AND " +
                 COLUMN_STYLE + " = ? AND " +
                 COLUMN_LOCATION + " = ? AND " +
                 COLUMN_MUSIC + " = ? AND " +
                 COLUMN_AVERAGE_AGE + " = ?";
         return db.rawQuery(query, characteristics);
-    }*/
+    }
 }
