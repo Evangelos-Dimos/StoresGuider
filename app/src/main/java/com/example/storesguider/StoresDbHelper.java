@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class StoresDbHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "stores.db";
+    private static final String DATABASE_NAME = "Stores.db";
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_NAME = "stores";
@@ -35,6 +35,7 @@ public class StoresDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(CREATE_TABLE_QUERY);
     }
 
@@ -66,4 +67,9 @@ public class StoresDbHelper extends SQLiteOpenHelper {
                 COLUMN_AVERAGE_AGE + " = ?";
         return db.rawQuery(query, characteristics);
     }*/
+
+    public void searchStores(String type,String style,String location,String music,String averageAge,boolean parking,boolean disablePeople){
+        SQLiteDatabase db=this.getReadableDatabase();
+        //υλοποίηση της search
+    }
 }

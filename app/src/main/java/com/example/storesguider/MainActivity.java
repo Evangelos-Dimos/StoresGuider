@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -15,10 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.storesguider.LogInActivity;
 import com.example.storesguider.RegisterActivity;
 
-
 public class MainActivity extends AppCompatActivity {
 
-    String[] item = {"Brunch", "Coffeshop", "Club", "Bar", "Restaurant"};
+    String[] item1 = {"Brunch", "Coffeshop", "Club", "Bar", "Restaurant"};
     String[] item2 = {"Chill", "Casual", "High Class"};
     String[] item3 = {"Athens", "Thessaloniki", "Patra", "Ioannina", "Heraklion", "Volos"};
     String[] item4 = {"House", "Pop", "Hip-hop", "Lounge", "All"};
@@ -32,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
     com.google.android.material.textfield.TextInputLayout location;
     com.google.android.material.textfield.TextInputLayout music;
     com.google.android.material.textfield.TextInputLayout average_age;
-    RadioButton parking;
-    RadioButton disabled;
-    AutoCompleteTextView autoCompleteTextView;
+    RadioButton radioButton_parking;
+    RadioButton radioButton_disabled_access;
+    AutoCompleteTextView autoCompleteTextView_type ;
+    AutoCompleteTextView autoCompleteTextView_style ;
+    AutoCompleteTextView autoCompleteTextView_location ;
+    AutoCompleteTextView autoCompleteTextView_music ;
+    AutoCompleteTextView autoCompleteTextView_averageAge ;
     ArrayAdapter<String> arrayAdapter;
 
 
@@ -43,39 +47,117 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        autoCompleteTextView = findViewById(R.id.autoComplete);
-        arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item);
-        autoCompleteTextView.setAdapter(arrayAdapter);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        autoCompleteTextView_type = findViewById(R.id.autoComplete);
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item1);
+        autoCompleteTextView_type.setAdapter(arrayAdapter);
+        autoCompleteTextView_type.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(MainActivity.this, "item " + item, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "You select the type: " + item, Toast.LENGTH_SHORT).show();
             }
         });
 
-        autoCompleteTextView = findViewById(R.id.autoComplete2);
+        autoCompleteTextView_style = findViewById(R.id.autoComplete2);
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item2);
-        autoCompleteTextView.setAdapter(arrayAdapter);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        autoCompleteTextView_style.setAdapter(arrayAdapter);
+        autoCompleteTextView_style.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item2 = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(MainActivity.this, "item " + item2, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "You select the style: " + item2, Toast.LENGTH_SHORT).show();
             }
         });
 
-        autoCompleteTextView = findViewById(R.id.autoComplete3);
+        autoCompleteTextView_location = findViewById(R.id.autoComplete3);
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item3);
-        autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView_location.setAdapter(arrayAdapter);
+        autoCompleteTextView_location.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item3 = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(MainActivity.this, "You select the location: " + item3, Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        autoCompleteTextView = findViewById(R.id.autoComplete4);
+        autoCompleteTextView_music = findViewById(R.id.autoComplete4);
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item4);
-        autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView_music.setAdapter(arrayAdapter);
+        autoCompleteTextView_music.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item4 = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(MainActivity.this, "You select the music: " + item4, Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        autoCompleteTextView = findViewById(R.id.autoComplete5);
+        autoCompleteTextView_averageAge = findViewById(R.id.autoComplete5);
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item5);
-        autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView_averageAge.setAdapter(arrayAdapter);
+        autoCompleteTextView_averageAge.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item5 = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(MainActivity.this, "You select the age: " + item5, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //RadioButton Parking
+        radioButton_parking = findViewById(R.id.parking);
+        radioButton_parking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this, "Parking is checked ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //RadioButton
+        radioButton_disabled_access = findViewById(R.id.disabled_access);
+        radioButton_disabled_access.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this, "Access for disabled people is checked ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    public void findStore(View view){
+        StoresDbHelper dataBase= new StoresDbHelper(this);
+        String type;
+        String style;
+        String location;
+        String music;
+        String averageAge;
+        boolean parking;
+        boolean disablePeople;
+
+        int i = autoCompleteTextView_type.getListSelection();
+        type = item1[i];
+
+        int j = autoCompleteTextView_style.getListSelection();
+        style = item2[j];
+
+        int k = autoCompleteTextView_location.getListSelection();
+        location = item3[k];
+
+        int z = autoCompleteTextView_music.getListSelection();
+        music = item4[z];
+
+        int l = autoCompleteTextView_averageAge.getListSelection();
+        averageAge = item5[l];
+
+        parking = radioButton_parking.isChecked();
+        disablePeople = radioButton_disabled_access.isChecked();
+
+        dataBase.searchStores(type,style,location,music,averageAge,parking,disablePeople);
+        //εδώ θα επιστρέφονται τα αποτελέσματα της και ανάλογα θα το συνδέσουμε με το 4 activity
+    }
+
 
         /*searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener()
@@ -98,4 +180,3 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
     }
-}
