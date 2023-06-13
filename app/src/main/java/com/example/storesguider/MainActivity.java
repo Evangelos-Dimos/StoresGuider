@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void findStore(View view){
+    public void findStores(View view){
         StoresDbHelper dataBase= new StoresDbHelper(this);
         String type;
         String style;
