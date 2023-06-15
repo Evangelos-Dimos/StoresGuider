@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.storesguider.LogInActivity;
 import com.example.storesguider.RegisterActivity;
+import com.example.storesguider.databinding.ActivityLoginBinding;
+import com.example.storesguider.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,11 +43,20 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView_averageAge ;
     ArrayAdapter<String> arrayAdapter;
 
+    StoresDbHelper storeDatabaseHelper;
+    ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        storeDatabaseHelper= new StoresDbHelper(this);
+
+        Boolean check = storeDatabaseHelper.insertStore("ABC","coffe","casual","skg","hiphop","18+",true,true);
 
         autoCompleteTextView_type = findViewById(R.id.autoComplete);
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item1);
@@ -124,9 +135,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type;
+                String style;
+                String location;
+                String music;
+                String averageAge;
+                boolean parking;
+                boolean disablePeople;
+
+                int i = autoCompleteTextView_type.getListSelection();
+                type = item1[i];
+
+                int j = autoCompleteTextView_style.getListSelection();
+                style = item2[j];
+
+                int k = autoCompleteTextView_location.getListSelection();
+                location = item3[k];
+
+                int z = autoCompleteTextView_music.getListSelection();
+                music = item4[z];
+
+                int l = autoCompleteTextView_averageAge.getListSelection();
+                averageAge = item5[l];
+
+                parking = radioButton_parking.isChecked();
+                disablePeople = radioButton_disabled_access.isChecked();
+
+                //storeDatabaseHelper.searchStores(type,style,location,music,averageAge,parking,disablePeople);
+            }
+        });
+
     }
 
-    public void findStores(View view){
+    /*public void findStores(View view){
         StoresDbHelper dataBase= new StoresDbHelper(this);
         String type;
         String style;
@@ -156,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
         dataBase.searchStores(type,style,location,music,averageAge,parking,disablePeople);
         //εδώ θα επιστρέφονται τα αποτελέσματα της και ανάλογα θα το συνδέσουμε με το 4 activity
-    }
+    }*/
 
 
         /*searchButton = findViewById(R.id.searchButton);

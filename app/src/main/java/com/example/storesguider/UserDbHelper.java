@@ -13,7 +13,8 @@ public class UserDbHelper extends SQLiteOpenHelper
 
     public static final String databaseName = "Users.db";
 
-    public UserDbHelper(@Nullable Context context) {
+    public UserDbHelper(@Nullable Context context)
+    {
         super(context, databaseName, null, 1);
     }
 
