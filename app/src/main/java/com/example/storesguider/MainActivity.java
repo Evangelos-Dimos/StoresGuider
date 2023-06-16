@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         storeDatabaseHelper= new StoresDbHelper(this);
 
-        Boolean check = storeDatabaseHelper.insertStore("ABC","coffe","casual","skg","hiphop","18+",true,true);
+        Boolean check = storeDatabaseHelper.insertStore("ABC","coffe","casual","skg","hiphop","18+",false,true);
 
         autoCompleteTextView_type = findViewById(R.id.autoComplete);
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, item1);
@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        searchButton = findViewById(R.id.searchButton);
+
         binding.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -204,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         /*searchButton = findViewById(R.id.searchButton);
+
         searchButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
